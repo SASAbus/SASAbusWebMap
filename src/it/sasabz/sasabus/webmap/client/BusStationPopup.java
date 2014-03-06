@@ -40,14 +40,18 @@ public class BusStationPopup extends DivView
 
    ButtonView goDepartures;
 
+   String     language;
+
    public static class InitParameters extends DivView.InitParameters
    {
       String selectButtonText;
+      String language;
 
-      public InitParameters(String selectButtonText)
+      public InitParameters(String selectButtonText, String language)
       {
          super();
          this.selectButtonText = selectButtonText;
+         this.language = language;
       }
 
    }
@@ -55,6 +59,7 @@ public class BusStationPopup extends DivView
    BusStationPopup(InitParameters initParameters)
    {
       super(initParameters);
+      this.language = initParameters.language;
       this.busStationName = new SpanView(new SpanView.InitParameters("Popup"));
       this.appendChild(this.busStationName);
 
@@ -65,7 +70,7 @@ public class BusStationPopup extends DivView
          @Override
          public void onClick(DMClickEvent event)
          {
-            GWTSASAbusOpenDataLocalStorage.showDepartures(BusStationPopup.this.busStation.getName_it());
+            GWTSASAbusOpenDataLocalStorage.showDepartures(BusStationPopup.this.getBusStationNameUsingAppLanguage(BusStationPopup.this.busStation));
          }
       });
 
@@ -75,7 +80,19 @@ public class BusStationPopup extends DivView
    void setBusStation(BusStation busStation)
    {
       this.busStation = busStation;
-      this.busStationName.setText(busStation.getName_it());
+      this.busStationName.setText(this.getBusStationNameUsingAppLanguage(busStation));
+   }
+
+   public String getBusStationNameUsingAppLanguage(BusStation busStation)
+   {
+      if (this.language.equals("de"))
+      {
+         return busStation.findName_de();
+      }
+      else
+      {
+         return busStation.findName_it();
+      }
    }
 
 }

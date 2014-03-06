@@ -86,7 +86,10 @@ public class SASAbusWebMap extends Map
 
       final String selectButtonText = initialParameters[3].trim();
 
-      this.busStationPopup = new BusStationPopup(new BusStationPopup.InitParameters(selectButtonText));
+      String language = initialParameters[4].trim();
+
+      this.busStationPopup = new BusStationPopup(new BusStationPopup.InitParameters(selectButtonText,
+                                                                                    language));
 
       String tilesUrl = GWTSASAbusOpenDataLocalStorage.getMapTilesRootUrl() + "/{z}/{x}/{y}.png";
 
