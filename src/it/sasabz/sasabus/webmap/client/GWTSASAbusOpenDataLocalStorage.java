@@ -26,13 +26,10 @@
 package it.sasabz.sasabus.webmap.client;
 
 import it.sasabz.sasabus.opendata.client.SASAbusOpenDataLocalStorage;
-
 import java.io.IOException;
-
 import bz.davide.dmxmljson.unmarshalling.Structure;
 import bz.davide.dmxmljson.unmarshalling.json.JSONParser;
 import bz.davide.dmxmljson.unmarshalling.json.gwt.GWTStructure;
-
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 
@@ -63,18 +60,19 @@ public class GWTSASAbusOpenDataLocalStorage extends SASAbusOpenDataLocalStorage
    protected String getData(String key) throws IOException
    {
       String json = getDataJson(key);
-      //Window.alert(json);
       return json;
    }
 
    static native String getDataJson(String key)/*-{
-		return $wnd.it_sasabz_sasabus_webmap_client_GWTSASAbusOpenDataLocalStorage
-				.getData(key);
+		return '' // android api7-8 bug
+				+ $wnd.it_sasabz_sasabus_webmap_client_GWTSASAbusOpenDataLocalStorage
+						.getData(key);
    }-*/;
 
    static native String getMapTilesRootUrl()/*-{
-		return $wnd.it_sasabz_sasabus_webmap_client_GWTSASAbusOpenDataLocalStorage
-				.getMapTilesRootUrl();
+		return '' // android api7-8 bug
+				+ $wnd.it_sasabz_sasabus_webmap_client_GWTSASAbusOpenDataLocalStorage
+						.getMapTilesRootUrl();
    }-*/;
 
    static native void showDepartures(String busStationName)/*-{
@@ -83,12 +81,14 @@ public class GWTSASAbusOpenDataLocalStorage extends SASAbusOpenDataLocalStorage
    }-*/;
 
    static native String getRequestLocationStatus()/*-{
-		return $wnd.it_sasabz_sasabus_webmap_client_GWTSASAbusOpenDataLocalStorage
-				.getRequestLocationStatus();
+		return '' // android api7-8 bug
+				+ $wnd.it_sasabz_sasabus_webmap_client_GWTSASAbusOpenDataLocalStorage
+						.getRequestLocationStatus();
    }-*/;
 
    static native String initialParameters()/*-{
-		return $wnd.it_sasabz_sasabus_webmap_client_GWTSASAbusOpenDataLocalStorage
-				.initialParameters();
+		return '' // android api7-8 bug
+				+ $wnd.it_sasabz_sasabus_webmap_client_GWTSASAbusOpenDataLocalStorage
+						.initialParameters();
    }-*/;
 }
