@@ -28,11 +28,9 @@ package it.sasabz.sasabus.webmap.client;
 import it.bz.tis.sasabus.backend.shared.Area;
 import it.sasabz.sasabus.opendata.client.model.BusStation;
 import it.sasabz.sasabus.opendata.client.model.BusStop;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
-
 import bz.davide.dmweb.client.leaflet.Circle;
 import bz.davide.dmweb.client.leaflet.EventListener;
 import bz.davide.dmweb.client.leaflet.LatLng;
@@ -46,7 +44,6 @@ import bz.davide.dmweb.shared.view.AbstractHtmlElementView;
 import bz.davide.dmweb.shared.view.ButtonView;
 import bz.davide.dmweb.shared.view.DMClickEvent;
 import bz.davide.dmweb.shared.view.DMClickHandler;
-
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Timer;
@@ -54,7 +51,7 @@ import com.google.gwt.user.client.Window;
 
 public class SASAbusWebMap extends Map
 {
-   final static String[]               COLORS             = new String[]{"#FF0000", "#0000FF", "#FFFF00"};
+   final static String[]               COLORS             = new String[] { "#FF0000", "#0000FF", "#FFFF00" };
 
    Polygon                             AreaBz;
    Polygon                             AreaMe;
@@ -69,7 +66,7 @@ public class SASAbusWebMap extends Map
 
    BusStation[]                        busStations        = null;
 
-   static String[]                     progressChars      = new String[]{"|", "/", "-", "\\"};
+   static String[]                     progressChars      = new String[] { "|", "/", "-", "\\" };
    int                                 progressIndex;
 
    ButtonView                          gps;
@@ -88,8 +85,7 @@ public class SASAbusWebMap extends Map
 
       String language = initialParameters[4].trim();
 
-      this.busStationPopup = new BusStationPopup(new BusStationPopup.InitParameters(selectButtonText,
-                                                                                    language));
+      this.busStationPopup = new BusStationPopup(selectButtonText, language);
 
       String tilesUrl = GWTSASAbusOpenDataLocalStorage.getMapTilesRootUrl() + "/{z}/{x}/{y}.png";
 
@@ -189,7 +185,7 @@ public class SASAbusWebMap extends Map
 
       this.afterZoomOrDrag();
 
-      this.gps = new ButtonView(new ButtonView.InitParameters("GPS"));
+      this.gps = new ButtonView("GPS");
       this.gps.setStyleName("map-custom-controls");
       DOM.appendChild(DOM.getElementById("map"), this.gps.getElement());
 

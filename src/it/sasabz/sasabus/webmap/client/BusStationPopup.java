@@ -42,28 +42,21 @@ public class BusStationPopup extends DivView
 
    String     language;
 
-   public static class InitParameters extends DivView.InitParameters
+   BusStationPopup(String selectButtonText, String language)
    {
-      String selectButtonText;
-      String language;
-
-      public InitParameters(String selectButtonText, String language)
-      {
-         super();
-         this.selectButtonText = selectButtonText;
-         this.language = language;
-      }
-
+      this();
+      this.goDepartures.setLabel(selectButtonText);
+      this.language = language;
    }
 
-   BusStationPopup(InitParameters initParameters)
+   BusStationPopup()
    {
-      super(initParameters);
-      this.language = initParameters.language;
-      this.busStationName = new SpanView(new SpanView.InitParameters("Popup"));
+      super();
+      this.language = "en";
+      this.busStationName = new SpanView("Popup");
       this.appendChild(this.busStationName);
 
-      this.goDepartures = new ButtonView(new ButtonView.InitParameters(initParameters.selectButtonText));
+      this.goDepartures = new ButtonView("Action Name");
 
       this.goDepartures.addClickHandler(new DMClickHandler()
       {
